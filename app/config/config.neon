@@ -1,0 +1,41 @@
+parameters:
+
+
+application:
+	errorPresenter: Error
+	mapping:
+		Back: Eshopblank\BackModule\Presenters\*Presenter
+		Front: Eshopblank\FrontModule\Presenters\*Presenter
+		*: App\*Module\Presenters\*Presenter
+
+
+session:
+	expiration: 14 days
+
+
+services:
+	router: App\RouterFactory::createRouter
+	- Eshopblank\Model\UserRegistrationService
+	- Eshopblank\Model\Security\Authenticator
+	- Eshopblank\FrontModule\Forms\INewQuoteFormFactory
+	- Eshopblank\BackModule\Forms\ILoginFormFactory
+	- Eshopblank\BackModule\Forms\IRegisterFormFactory
+	- Eshopblank\BackModule\Forms\IEditParentCategoryFormFactory
+	- Eshopblank\Model\EditParentCategoryService
+	- Eshopblank\BackModule\Forms\IEditCategoryFormFactory
+	- Eshopblank\Model\CategoryService
+	- Eshopblank\BackModule\Forms\IEditProductFormFactory
+	- Eshopblank\BackModule\Forms\IProductsListFormFactory
+	- Eshopblank\BackModule\Forms\IAddProductFormFactory
+	- Eshopblank\Model\ProductService
+	- Eshopblank\BackModule\Forms\IAddCategoryFormFactory
+	- Eshopblank\BackModule\Forms\ICategoryListFormFactory
+	- Eshopblank\BackModule\Forms\IQuotesFormFactory
+	- Eshopblank\Model\QuoteService
+
+extensions:
+    dbal: Nextras\Dbal\Bridges\NetteDI\DbalExtension
+    orm: Nextras\Orm\Bridges\NetteDI\OrmExtension
+
+orm:
+    model: Eshopblank\Model\Orm
