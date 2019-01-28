@@ -22,9 +22,17 @@ final class RouterFactory
         $routerBack[] = new Route('admin/<presenter>/<action>[/<id>]', 'Login:default');
 
         $router[] = $routerFront = new RouteList("Front");
-        $routerFront[] = new Route('<presenter>/<action>[/<id>]', 'Homepage:default');
+        $routerFront[] = new Route('/veterinarni-vybaveni/<action>[/<id>]', [
+            'presenter' => 'VeterinarniVybaveni',
+            'action' => 'default'
+        ]);
+        $routerFront[] = new Route('/produkt/<action>[/<id>]', [
+            'presenter' => 'Product',
+            'action' => 'default'
+        ]);
+        $routerFront[] = new Route('<presenter>/<action>[/<id>]', 'UvodniStrana:default');
 
-		$router[] = new Route('<presenter>/<action>[/<id>]', 'Homepage:default');
+		$router[] = new Route('<presenter>/<action>[/<id>]', 'UvodniStrana:default');
 
 		return $router;
 	}

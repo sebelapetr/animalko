@@ -8,6 +8,9 @@ use Nextras\Orm\Model\Model;
  * @property-read CategoryParentsRepository $categoryParents
  * @property-read UsersRepository $users
  * @property-read QuotesRepository $quotes
+ * @property-read OrdersRepository $orders
+ * @property-read OrdersItemsRepository $ordersItems
+ * @property-read NewslettersRepository $newsletters
  */
 class Orm extends Model
 {

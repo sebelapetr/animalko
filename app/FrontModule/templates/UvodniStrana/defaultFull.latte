@@ -1,0 +1,181 @@
+{block content}
+
+<div class="col-sm-8">
+    <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" style="height: 385px;background: #f1f1f1">
+            <div class="item active" style="padding: 0 35px">
+                <div class="col-sm-12">
+                    <h1 style="margin: 0;color:black"><span>Vítejte na </span><br> Animalko.cz</h1>
+                        <p>Vítáme Vás na našem eshopu Animalko! Vyberte si z obsáhlé nabídky veterinárního a chovatelského vybavení:</p>
+                    <br>
+                    <a href="{link VeterinarniVybaveni:kategorie 1}" class="btn btn-default get" style="background:linear-gradient(to top,#a00,#cd0101 57%);padding:10px;width: 50%;margin:0 auto;display:block">Veterinární vybavení</a>
+                    <a href="{link ChovatelskeVybaveni:kategorie 2}" class="btn btn-default get" style="background:linear-gradient(to top,#a00,#cd0101 57%);padding:10px;width: 50%;margin:0 auto;display:block;margin-top:5px;">Chovatelské vybavení</a>
+                </div>
+            </div>
+            {*
+            <div class="item">
+              <div class="col-sm-6">
+                  <h1><span>E</span>-SHOPPER</h1>
+                  <h2>100% Responsive Design</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                  <button type="button" class="btn btn-default get">Get it now</button>
+              </div>
+              <div class="col-sm-6">
+                  <img src="images/home/girl2.jpg" class="girl img-responsive" alt="" />
+                  <img src="images/home/pricing.png"  class="pricing" alt="" />
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="col-sm-6">
+                  <h1><span>E</span>-SHOPPER</h1>
+                  <h2>Free Ecommerce Template</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                  <button type="button" class="btn btn-default get">Get it now</button>
+              </div>
+              <div class="col-sm-6">
+                  <img src="images/home/girl3.jpg" class="girl img-responsive" alt="" />
+                  <img src="images/home/pricing.png" class="pricing" alt="" />
+              </div>
+            </div>
+            *}
+        </div>
+
+        <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev" style="left:10px">
+            <i class="fa fa-angle-left"></i>
+        </a>
+        <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next" style="right: 10px">
+            <i class="fa fa-angle-right"></i>
+        </a>
+    </div>
+    <ol class="carousel-indicators" style="width:100%;position:absolute;padding:0;margin:0px 0;left:0;margin-top: 0">
+        <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+        {*<li data-target="#slider-carousel" data-slide-to="1"></li>
+        <li data-target="#slider-carousel" data-slide-to="2"></li>*}
+    </ol>
+</div>
+<div class="col-sm-4">
+    <div>
+        <h3 style="margin-top:0;font-weight: 300">Doporučené</h3>
+        <hr style="margin-bottom: 0">
+    </div>
+    <div>
+        {foreach $recommended as $veterinaryItem}
+            <div class="col-sm-12" style="border-bottom: 1px solid #0000001f;padding: 5px 0">
+                <div class="col-sm-3">
+                    <a href="{link VeterinarniVybaveni:produkt $veterinaryItem->product->id}">
+                        <img src="{$basePath}/img/products/{$veterinaryItem->product->image}" alt="{$veterinaryItem->product->productName|noescape}" height="100">
+                    </a>
+                </div>
+                <div class="col-sm-9">
+                    <a href="{link VeterinarniVybaveni:produkt $veterinaryItem->product->id}"><h4 style="color:black;font-weight: 300;text-decoration: ">{$veterinaryItem->product->productName|noescape}</h4></a>
+                    {if $veterinaryItem->product->inStock}
+                        {switch $veterinaryItem->product->stockLevel}
+                            {case 0}
+                            <p class="sklad" style="color: rgb(255,96,0);padding:0">Skladem < 3 ks Ihned k odeslání</p>
+                        {case 3}
+                            <p class="sklad" style="padding: 0">Skladem 3-9 ks Ihned k odeslání</p>
+                        {case 10}
+                            <p class="sklad" style="padding: 0">Skladem > 9 ks Ihned k odeslání</p>
+                        {/switch}
+                    {else}
+                        <p class="sklad" style="color:red;padding: 0">Zboží není skladem</p>
+                    {/if}
+                    <a style="color:#3d4951;font-weight:600;font-size:17px">{$veterinaryItem->product->catalogPriceVat} Kč s DPH</a></div>
+            </div>
+        {/foreach}
+    </div>
+</div>
+<div class="col-sm-12">
+
+</div>
+<div class="col-sm-12" style="background: none repeat scroll 0 0 #F3F3F3;margin-top:30px">
+    <div class="row">
+        <div class="col-sm-12" style="display:flex;align-items: center;justify-content: center;">
+        <h3>Potřebujete poradit?</h3>
+    </div>
+    <div class="col-sm-12" style="padding-bottom: 25px">
+        <div class="col-sm-4"><div class="row" style="background:#ffffff5e;padding:12px;border:1px solid #0003;text-align: center;margin:3px">Online chat</div></div>
+        <div class="col-sm-4"><div class="row" style="background:#ffffff5e;padding:12px;border:1px solid #0003;text-align: center;margin:3px">Messenger chat</div></div>
+        <div class="col-sm-4"><div class="row" style="background:#ffffff5e;padding:12px;border:1px solid #0003;text-align: center;margin:3px">Telefon</div></div>
+        <div class="col-sm-4"><div class="row" style="background:#ffffff5e;padding:12px;border:1px solid #0003;text-align: center;margin:3px">Email</div></div>
+        <div class="col-sm-4"><div class="row" style="background:#ffffff5e;padding:12px;border:1px solid #0003;text-align: center;margin:3px">Kontaktní formulář</div></div>
+        <div class="col-sm-4"><div class="row" style="background:#ffffff5e;padding:12px;border:1px solid #0003;text-align: center;margin:3px">Kamenné výdejní místo</div></div>
+    </div>
+    </div>
+</div>
+<div class="col-sm-6" style="padding: 20px;">
+    <div>
+        <h3 style="font-weight: 300">Nejprodávanější <a style="color:black;">veterinární vybavení</a></h3>
+        <hr style="margin-bottom: 0">
+    </div>
+    <div>
+        {var $i = 1}
+        {foreach $topSalesVeterinary as $veterinaryItem}
+            <div class="col-sm-12" style="border-bottom: 1px solid #0000001f;padding: 5px 0">
+                <div class="col-sm-1">
+                    <h4 style="color:black;font-weight: 300;text-decoration: unset;    margin-top: 40px;font-size: 25px;">{$i}.</h4>
+                </div>
+                <div class="col-sm-3">
+                    <a href="{link VeterinarniVybaveni:produkt $veterinaryItem->product->id}">
+                        <img src="{$basePath}/img/products/{$veterinaryItem->product->image}" alt="{$veterinaryItem->product->productName|noescape}" height="100">
+                    </a>
+                </div>
+                <div class="col-sm-8">
+                    <a href="{link VeterinarniVybaveni:produkt $veterinaryItem->product->id}"><h4 style="color:black;font-weight: 300;text-decoration: unset">{$veterinaryItem->product->productName|noescape}</h4></a>
+                    {if $veterinaryItem->product->inStock}
+                        {switch $veterinaryItem->product->stockLevel}
+                            {case 0}
+                            <p class="sklad" style="color: rgb(255,96,0);padding:0">Skladem < 3 ks Ihned k odeslání</p>
+                        {case 3}
+                            <p class="sklad" style="padding: 0">Skladem 3-9 ks Ihned k odeslání</p>
+                        {case 10}
+                            <p class="sklad" style="padding: 0">Skladem > 9 ks Ihned k odeslání</p>
+                        {/switch}
+                    {else}
+                        <p class="sklad" style="color:red;padding: 0">Zboží není skladem</p>
+                    {/if}
+                    <a style="color:#3d4951;font-weight:600;font-size:17px">{$veterinaryItem->product->catalogPriceVat} Kč s DPH</a>
+                </div>
+            </div>
+            {var $i = $i+1}
+        {/foreach}
+    </div>
+</div>
+<div class="col-sm-6" style="padding: 20px;">
+    <div>
+        <h3 style="font-weight: 300">Nejprodávanější <a style="color:black;">chovatelské vybavení</a></h3>
+        <hr style="margin-bottom: 0">
+    </div>
+    <div>
+        {var $i=1}
+        {foreach $topSalesBreeding as $breedingItem}
+            <div class="col-sm-12" style="border-bottom: 1px solid #0000001f;padding: 5px 0">
+                <div class="col-sm-1">
+                    <h4 style="color:black;font-weight: 300;text-decoration: unset;margin-top: 40px;font-size: 25px;">{$i}.</h4>
+                </div>
+                <div class="col-sm-3">
+                    <a href="{link ChovatelskeVybaveni:produkt $breedingItem->product->id}">
+                        <img src="{$basePath}/img/products/{$breedingItem->product->image}" alt="{$breedingItem->product->productName|noescape}" height="100">
+                    </a>
+                </div>
+                <div class="col-sm-8">
+                    <a href="{link ChovatelskeVybaveni:produkt $breedingItem->product->id}"><h4 style="color:black;font-weight: 300;text-decoration: ">{$breedingItem->product->productName|noescape}</h4></a>
+                    {if $breedingItem->product->inStock}
+                        {switch $breedingItem->product->stockLevel}
+                            {case 0}
+                            <p class="sklad" style="color: rgb(255,96,0);padding:0">Skladem < 3 ks Ihned k odeslání</p>
+                        {case 3}
+                            <p class="sklad" style="padding: 0">Skladem 3-9 ks Ihned k odeslání</p>
+                        {case 10}
+                            <p class="sklad" style="padding: 0">Skladem > 9 ks Ihned k odeslání</p>
+                        {/switch}
+                    {else}
+                        <p class="sklad" style="color:red;padding: 0">Zboží není skladem</p>
+                    {/if}
+                    <a style="color:#3d4951;font-weight:600;font-size:17px">{$breedingItem->product->catalogPriceVat} Kč s DPH</a></div>
+            </div>
+            {var $i=$i+1}
+        {/foreach}
+    </div>
+</div>

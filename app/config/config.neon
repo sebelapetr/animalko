@@ -31,7 +31,21 @@ services:
 	- Eshopblank\BackModule\Forms\IAddCategoryFormFactory
 	- Eshopblank\BackModule\Forms\ICategoryListFormFactory
 	- Eshopblank\BackModule\Forms\IQuotesFormFactory
+	- Eshopblank\BackModule\Forms\IOrdersFormFactory
+	- Eshopblank\FrontModule\Forms\IShippingAndPaymentFormFactory
+	- Eshopblank\FrontModule\Forms\IPersonalDataFormFactory
+	- Eshopblank\Model\ShippingAndPaymentService
+	- Eshopblank\Model\OrderService
+	- Eshopblank\BackModule\Model\FeederService
 	- Eshopblank\Model\QuoteService
+	- Eshopblank\Model\AddProductService
+	- Eshopblank\FrontModule\Forms\IAddProductFormFactory
+	- Eshopblank\FrontModule\Forms\INewsletterFormFactory
+	- Eshopblank\Model\NewsletterService
+	- Eshopblank\FrontModule\Forms\IFindFormFactory
+	- Eshopblank\Model\FindService
+	- Eshopblank\Model\InvoiceService
+
 
 extensions:
     dbal: Nextras\Dbal\Bridges\NetteDI\DbalExtension

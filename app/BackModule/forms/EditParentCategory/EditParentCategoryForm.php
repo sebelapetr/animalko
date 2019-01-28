@@ -39,7 +39,6 @@ class EditParentCategoryForm extends Control{
         return $form;
     }
     public function editParentCategoryFormSucceeded(Form $form, $values){
-        Debugger::barDump($values->id);
         $this->editParentCategoryService->editParentCategory($values);
         $this->getPresenter()->flashMessage("Rodičovská kategorie úspěšně aktualizována.");
 

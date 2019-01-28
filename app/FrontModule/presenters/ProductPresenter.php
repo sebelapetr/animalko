@@ -29,7 +29,7 @@ class ProductPresenter extends BasePresenter{
     public function renderDefault($id)
     {
         $this->currentCategoryId = $id;
-        $this->getTemplate()->products = $this->orm->products->getById($id);
+        $this->getTemplate()->product = $this->orm->products->getById($id);
         $this->getTemplate()->categories = $this->orm->categories->getById($id);
         //Debugger::barDump($this->getCategories($this->getCategory($id)));
     }
@@ -40,7 +40,6 @@ class ProductPresenter extends BasePresenter{
         }
         $isCategoryParent = $this->orm->categoryParents->findBy(["parent"=>$id])->countStored();
         if ($isCategoryParent<0){
-            Debugger::barDump('a');
             $category = $this->getCategoryParents($id);
             foreach ($category as $categorie){
                 $this->categories[] = $categorie->category->id;

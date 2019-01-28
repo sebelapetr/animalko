@@ -11,7 +11,9 @@ use Nextras\Orm\Entity\Entity;
  * @package Eshopblank\Model
  * @property int $id {primary}
  * @property string $name
+ * @property string $surname
  * @property string $email
+ * @property string $phone
  * @property string|NULL $city
  * @property string|NULL $zip
  * @property Product|NULL $product {m:1 Product::$quote}

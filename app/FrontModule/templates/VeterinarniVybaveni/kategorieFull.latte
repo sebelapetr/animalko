@@ -1,0 +1,201 @@
+{block title}{$category->categorySingleName|noescape}{/block}
+{ifset $category->description}{block description}{$category->description|noescape}{/block}{/ifset}
+{block content}
+{*
+<section id="advertisement">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <img style="border:1px solid #0003" src="{$basePath}/img/advertisement.jpg" alt="reklama" height="100" alt="" />
+            </div>
+        </div>
+    </div>
+</section>
+*}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="col-sm-12" style="padding:0;margin-bottom:15px;border:1px solid #0003">
+                    <div class="col-sm-12" style="background:#f1f1f15e;border-bottom: 0.5px solid rgba(0,0,0,0.25)">
+                        <h3 style="color:black;text-decoration:;font-weight:400;font-size:16px;margin:17px 0;">Kategorie</i></h3>
+                    </div>
+                    {if parentCategories}
+                        {foreach $parentCategories as $categoryParent}
+                                <div class="col-sm-12 toggler" style="cursor: pointer;padding:5px;background:00000000;border-bottom:0.5px solid rgba(0,0,0,0.125)" onclick="myFunction({$categoryParent->category->id})" >
+                                    <h3 style="color:black;font-weight:300;font-size:14px;margin:13px 10px 13px 10px;">
+                                        <i class="far fa-circle fa-xs pull-left" style="margin-right: 5px"></i>
+                                        <a href="{link VeterinarniVybaveni:kategorie $categoryParent->category->id}" class="category-item"  style="cursor: pointer;color:black">{$categoryParent->category->categorySingleName}</a>
+                                        <i class="fas fa-angle-down fa-xs pull-right category-more"></i>
+                                    </h3>
+                                    <div class="toggleX">
+                                        <ul style="padding: 5px 20px;" id="subcategories{$categoryParent->category->id}">
+                                            {foreach $categoryParent->category->parent as $subcategory}
+                                                {if $subcategory->visible == 1}
+                                                    <li style="margin-top:10px;">
+                                                        <i class="fas fa-angle-right fa-xs"></i> <a href="{link VeterinarniVybaveni:kategorie $subcategory->category->id}" class="category-item">{$subcategory->category->categorySingleName}</a>
+                                                    </li>
+                                                {/if}
+                                            {/foreach}
+                                            <li style="margin-top:10px;">
+                                                <i class="fas fa-angle-right fa-xs"></i> <a href="{link VeterinarniVybaveni:kategorie $categoryParent->category->id}" class="category-item"><b>Zobrazit vše</b></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                        {/foreach}
+                    {/if}
+                </div>
+            </div>
+
+            <div class="col-sm-9">
+
+                <div class="col-sm-12" style="padding:10px 0;border-bottom:1px solid #f5f5f5">
+
+                    <a href="{link UvodniStrana:default}"><i class="fa fa-home" style="color:black"></i></a>
+
+                    {foreach $categoryPath as $key=>$path}
+
+                        {if $key!=$actualId}
+
+                            <a style="color:black;text-decoration:none;font-weight:300;"><i class="fas fa-angle-right"></i></a><a href="{link VeterinarniVybaveni:kategorie $key}" style="color:black;text-decoration:none;font-weight:300;"><u>{$path}</u></a>
+
+                        {else}
+
+                            <a style="color:black;text-decoration:none;font-weight:300;"><i class="fas fa-angle-right"></i></a><a href="{link VeterinarniVybaveni:kategorie $key}" style="color:black;text-decoration:none;font-weight:300;">{$path}</a>
+
+                        {/if}
+
+                    {/foreach}
+
+                </div>
+
+                <div class="col-sm-12" style="padding-right:0px;padding-left:0px;">
+
+                    <div class="features_items"><!--features_items-->
+
+                            <div class="col-sm-12"  style="padding-right:0px;padding-left:0px;">
+                                <h3 style="font-weight:300;margin-bottom:10px">{$category->categorySingleName}</h3>
+                                <hr>
+                            </div>
+
+                            {var i=1}
+                            {foreach $categories as $categoryParent}
+                                {if $categoryParent->visible == 1}
+                                    <a href="{link VeterinarniVybaveni:kategorie $categoryParent->category->id}">
+                                        <div class="col-sm-4 float-left" style="padding:0">
+                                            <div class="row" style="background:#f1f1f15e{*transparent*};margin:3px;padding:12px;border:1px solid #0003;text-align: left">
+                                            <h3 style="color:black;text-decoration:;font-weight:300;font-size:14px;margin:4px 0 0 0">{$categoryParent->category->categorySingleName} <i class="fas fa-angle-right pull-right" style="margin-left:10px"></i></h3>
+                                            </div>
+                                        </div>
+                                    </a>
+                                {/if}
+                            {/foreach}
+
+                    </div>
+
+                    <div class="col-sm-12" style="border: 1px solid #0003;margin:20px 0 ;padding:0;">
+                        <ul class="nav nav-tabs filtr">
+                            <li style="'.$selected1s.'"><a href="{link VeterinarniVybaveni:kategorie $actualId, $actualPage, 'catalogPriceVat', 'ASC'}" style="color:black;text-decoration:none;font-weight:300;'.$selected1.'">Doporučené</a></li>
+                            <li style="'.$selected2s.'"><a href="{link VeterinarniVybaveni:kategorie $actualId, $actualPage, 'catalogPriceVat', 'ASC'}" style="color:black;text-decoration:none;font-weight:300;'.$selected2.'">Nejlevnější</a></li>
+                            <li style="'.$selected3s.'"><a href="{link VeterinarniVybaveni:kategorie $actualId, $actualPage, 'catalogPriceVat', 'DESC'}" style="color:black;text-decoration:none;font-weight:300;'.$selected3.'">Nejdražší</a></li>
+                            <li style="'.$selected4s.'"><a href="?p='.$row_nadpis['jmeno_kategorie'].'&amp;razeni=nejprodavanejsi&amp;min='.$min.'&amp;max='.$max.'&amp;znacka='.$znacka.'" style="color:black;text-decoration:none;font-weight:300;'.$selected4.'">Nejprodávanější</a></li>
+                            <li style="'.$selected5s.'"><a href="{link VeterinarniVybaveni:kategorie $actualId, $actualPage, 'productName', 'ASC'}" style="color:black;text-decoration:none;font-weight:300;'.$selected5.'">Abecedně</a></li>
+                            <li style="float:right;font-weight:300">{$productsCount} produktů v kategorii</li>
+                        </ul>
+                    </div>
+
+                    {if !$productsCount>0}
+                    <div class="col-sm-12" style="text-align:center;">
+                        <h1 style="font-size:25px;font-weight:300">V této kombinaci nyní nejsou k dispozici žádné produkty :(</h1>
+                        <a href="?p='.$kateg!!!!!!!!!orie.'">
+                            <div style="background:#f3f3f3;width:200px;margin:0 auto;">
+                                <p style="padding:10px;color:black;"><i class="fa fa-angle-left"></i>Zpět do kategorie</p>
+                            </div>
+                        </a>
+                    </div>
+                    {else}
+                    {foreach $products as $product}
+                    <div class="col-sm-4 product">
+                        <div class="product-image-wrapper">
+
+                            <div class="single-products">
+                                <div class="productinfo text-left">
+                                    <a href="{link VeterinarniVybaveni:produkt $product->id}">
+                                        <img src="{$basePath}/img/products/{$product->image}" alt="{$product->productName|noescape}" width="250" height="250" style="object-fit: contain;"/>
+                                    </a>
+                                <hr style="margin:8px;">
+                                    <p>
+                                        <a href="{link VeterinarniVybaveni:produkt $product->id}" style="display:block;height: 50px">{$product->productName|noescape}</a>
+                                    {*{if ($product->retailPrice)>0 and $product->retailPrice>$product->catalogPriceVat}<h2 class="moc"><strike>{$product->retailPrice} Kč</strike></h2>{/if}*}
+                                    <h2>{$product->catalogPriceVat} Kč</h2>
+                                    {if $product->inStock}
+                                        {switch $product->stockLevel}
+                                            {case 0}
+                                            <p class="sklad" style="color: rgb(255,96,0)">Skladem < 3 ks Ihned k odeslání</p>
+                                            {case 3}
+                                            <p class="sklad">Skladem 3-9 ks Ihned k odeslání</p>
+                                            {case 10}
+                                            <p class="sklad">Skladem > 9 ks Ihned k odeslání</p>
+                                        {/switch}
+                                    {else}
+                                        <p class="sklad" style="color:red">Zboží není skladem</p>
+                                    {/if}
+                                    <a class="popis" style="display:block;height: 90px;">{$product->description|noescape|striptags|truncate:160}</a>
+                                    </p>
+                                    {if !$product->productInCart($product->id, $session)}
+                                        <a href="{plink addProductToCart! $product->id, $actualId}" type="submit" id="echo 'add_cart'.$nb;?>" name="add_to_cart" style="border-radius:0;margin-top:5px;width: 70%;margin-left:10px;" class="btn btn-default add-to-cart cart add-t-c" value="" onclick="getElementById('add_carthp echo $nb;?>').style.display='none';getElementById('go_carthp echo $nb;?>').style.display='block'"><i class="fa fa-shopping-cart"></i>Přidat do košíku</a>
+                                    {else}
+                                        <a href="{plink addProductToCart! $product->id, $actualId}" type="submit" id="echo 'add_cart'.$nb;?>" name="add_to_cart" style="border-radius:0;margin-top:5px;width: 70%;margin-left:10px;background:linear-gradient(to top,#13aa00,#06cd01 57%);" class="btn btn-default add-to-cart cart"><i class="fa fa-check"></i>Zboží čeká v košíku</a>
+                                    {/if}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/foreach}
+
+                    {/if}
+
+                    <div class="col-sm-12">
+                        <ul class="pagination" style="padding:0">
+                            <li class="page_btn">
+                                <a n:if="$actualPage>1" style="margin:0" href="{link VeterinarniVybaveni:kategorie $actualId, page=>$actualPage-1}{if $orderBy}{$orderBy, $direction}{/if}">
+                                    <
+                                </a>
+                            </li>
+                            {if $actualPage>=6 and $lastPage>6}
+                            <li class="page_btn">
+                                <a href="{link VeterinarniVybaveni:kategorie $actualId, page=>1}{if $orderBy}{$orderBy, $direction}{/if}">1</a>
+                            </li>
+                            <li class="page_btn">
+                                <a style="background:transparent" class="no_hover">...</a>
+                            </li>
+                            {/if}
+                            {foreach $pages as $page}
+                                <li class="page_btn {if $page==$actualPage}active{/if}">
+                                    <a href="{link VeterinarniVybaveni:kategorie $actualId, page=>$page}{if $orderBy}{$orderBy, $direction}{/if}">{$page}</a>
+                                </li>
+                            {/foreach}
+                            {if $actualPage!=$lastPage and $actualPage!=$lastPage-1}
+                                {if $lastPage>6}
+                                    <li class="page_btn">
+                                        <a style="background:transparent" class="no_hover">...</a>
+                                    </li>
+                                    <li class="page_btn">
+                                        <a href="{link VeterinarniVybaveni:kategorie $actualId, page=>$lastPage}{if $orderBy}{$orderBy, $direction}{/if}">{$lastPage}</a>
+                                    </li>
+                                    <li class="page_btn">
+                                        <a style="margin:0" href="{link VeterinarniVybaveni:kategorie $actualId, page=>$actualPage+1}{if $orderBy}{$orderBy, $direction}{/if}">
+                                            >
+                                        </a>
+                                    </li>
+                                {/if}
+                            {/if}
+                        </ul>
+                    </div>
+                        </div><!--features_items-->
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>

@@ -9,7 +9,9 @@ use Nextras\Orm\Repository\Repository;
  * Class ProductsRepository
  * @package Eshopblank\Model
  *
- * @method ICollection|Product[] findCategoriesNew()
+ * @method ICollection|Product[] insertProduct()
+ * @method ICollection|Product[] insertStock()
+ * @method ICollection|Product[] findProducts()
  */
 
 class ProductsRepository extends Repository{

@@ -2,6 +2,7 @@
 
 namespace Eshopblank\BackModule\Presenters;
 
+use Eshopblank\FrontModule\Forms\INewsletterFormFactory;
 use Nette\Application\UI\Presenter;
 use Eshopblank\Model\Orm;
 

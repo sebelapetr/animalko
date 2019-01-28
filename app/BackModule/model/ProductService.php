@@ -44,9 +44,9 @@ class ProductService{
 
     public function getProducts(){
         if ($this->productsExists()){
-            $products = $this->orm->products->findAll()->orderBy('name', 'ASC');
+            $products = $this->orm->products->findAll()->orderBy('productName', 'ASC');
             foreach ($products as $product){
-                $productsList[$product->id] = $product->name;
+                $productsList[$product->id] = $product->productName;
             }
         }
         else{
@@ -65,14 +65,14 @@ class ProductService{
     }
 
     public function addProduct($values){
-        $product = $this->orm->products->getBy(['name'=>$values->name]);
+        $product = $this->orm->products->getBy(['productName'=>$values->name]);
         if ($product !== NULL){
             ?>
             <script>alert("Pozor! produkt se stejným názvem již existuje.")</script>
             <?php
         }
         $product = new Product();
-        $product->name = $values->name;
+        $product->productName = $values->name;
         $product->normPrice = $values->normPrice;
         $product->price = $values->price;
         $product->manufacturer = $values->manufacturer;

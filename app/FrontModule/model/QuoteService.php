@@ -24,16 +24,14 @@ class QuoteService
         else{
             $product = $this->orm->products->getById($values->product);
         }
-
         $quote = new Quote();
         $quote->name = $values->name;
+        $quote->surname = $values->surname;
         $quote->email = $values->email;
-        $quote->city = $values->city;
-        $quote->zip = $values->zip;
+        $quote->phone = $values->phone;
+        $quote->text = $values->message;
         $quote->product = $product;
-        $quote->text = $values->text;
         $quote->createdAt = date("Y-m-d h:i:sa");
-        $this->orm->persist($quote);
-        $this->orm->flush();
+        $this->orm->persistAndFlush($quote);
     }
 }

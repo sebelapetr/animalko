@@ -1,0 +1,25 @@
+@media all and (min-width: 768px) {
+
+    .x700{display:block !important;}
+    .x490{display:none !important;}
+    .x290{display:none !important;} 
+
+}
+
+@media all and (max-width: 767px) {
+
+    .x700{display:none !important;}
+    .x490{display:none !important;}
+    .x290{display:block !important;}
+    .header-menu{padding:0 !important;}
+
+}
+
+@media all and (max-width: 480px) {
+
+    .x700{display:none !important;}
+    .x490{display:none !important;}
+    .x290{display:block !important;}
+    .header-menu{padding:0 !important;}
+
+}  

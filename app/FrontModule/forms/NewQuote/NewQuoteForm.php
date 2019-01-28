@@ -32,11 +32,11 @@ class NewQuoteForm extends Control{
         $form->addHidden("product", $this->productId);
         $form->addText("name")
             ->setRequired();
+        $form->addText("surname");
         $form->addEmail("email")
             ->setRequired();
-        $form->addText("city");
-        $form->addText("zip");
-        $form->addTextArea('text');
+        $form->addText("phone");
+        $form->addTextArea("message");
         $form->addSubmit("submit");
         $form->onSuccess[] = [$this, 'newQuoteFormSucceeded'];
         return $form;
@@ -44,7 +44,7 @@ class NewQuoteForm extends Control{
     public function newQuoteFormSucceeded(Form $form, $values){
 
         $this->quoteService->newQuote($values);
-        $this->getPresenter()->flashMessage("Poptávka byla zadána do systému");
+        $this->getPresenter()->flashMessage("Zpráva byla úspěšně zadána do systému.");
 
         //$this->getPresenter()->redirect("Homepage:default");
     }
