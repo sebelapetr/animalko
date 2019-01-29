@@ -42,6 +42,7 @@ class OrderPresenter extends BasePresenter{
         $order->state++;
         $order->createdAt = $order->createdAt;
         $this->orm->persistAndFlush($order);
+        $this->redirect('this');
     }
 
 }

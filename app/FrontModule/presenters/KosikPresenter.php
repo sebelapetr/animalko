@@ -97,7 +97,7 @@ Class KosikPresenter extends BasePresenter{
         foreach ($productsSession as $product){
             $totalPrice += $product['catalogPriceVat']*$product['quantity'];
         }
-        $shipping = ($shippingSession->shipping==1?'89':'0');
+        $shipping = ($shippingSession->shipping==1?'98':'0');
         $payment = ($paymentSession->payment==1?'30':'0');
         $totalPrice += $shipping;
         $totalPrice += $payment;

@@ -63,7 +63,7 @@ Class VyhledavaniPresenter extends BasePresenter{
         }
         $deliveryTime->modify('+'.$days.' days');
         $this->getTemplate()->product = $product;
-        $this->getTemplate()->relatedProducts = $this->orm->products->findBy(['category'=>$product->category])->limitBy(9,0);
+        $this->getTemplate()->relatedProducts = $this->orm->products->findBy(['category'=>$product->category])->limitBy(4,0);
         $this->getTemplate()->categories = $this->orm->categories->getById($id);
         $this->getTemplate()->deliveryDate = $deliveryTime;
         $this->getTemplate()->productInCart = $this->productInCart($id);
@@ -71,6 +71,7 @@ Class VyhledavaniPresenter extends BasePresenter{
         $this->getTemplate()->den = $this->cesky_den(1);
         $this->getCategoryPath($product->category); /* -SETNUTÍ NÁZVŮ KATEGORIÍ CESTY KD AKTUÁLNÍ KATEGORIE- */
         $this->getTemplate()->categoryPath = array_reverse($this->parentCategories, true);
+        $this->getTemplate()->session = $this->getSession()->getSection('products');
     }
 
     public function productInCart($id){
@@ -99,6 +100,33 @@ Class VyhledavaniPresenter extends BasePresenter{
                 $this->parentCategories[$category->category->id] = $category->category->categorySingleName;
             }
         }
+    }
+
+    public function handleAddProductToCart($id, $currentCategory){
+        $product = $this->orm->products->getById($id);
+        //$array = ['id'=>$id, 'productName'=>$product->productName,'catalogPriceVat'=>$product->catalogPriceVat,'quantity'=>1, 'photo'=>$product->image];
+        $productsSession = $this->getSession()->getSection('products');
+        $productsSession->$id = array();
+        $productsSession->$id['id'] = $id;
+        $productsSession->$id['productName'] = $product->productName;
+        $productsSession->$id['catalogPriceVat'] = $product->catalogPriceVat;
+        $productsSession->$id['quantity'] = 1;
+        $productsSession->$id['photo'] = $product->image;
+        $this->flashMessage('Produkt byl přidán do košíku');
+        $this->redirect('kategorie', $currentCategory);
+    }
+
+    public function handleAddProductToCartFromProduct($id, $currentProduct){
+        $product = $this->orm->products->getById($id);
+        //$array = ['id'=>$id, 'productName'=>$product->productName,'catalogPriceVat'=>$product->catalogPriceVat,'quantity'=>1, 'photo'=>$product->image];
+        $productsSession = $this->getSession()->getSection('products');
+        $productsSession->$id = array();
+        $productsSession->$id['id'] = $id;
+        $productsSession->$id['productName'] = $product->productName;
+        $productsSession->$id['catalogPriceVat'] = $product->catalogPriceVat;
+        $productsSession->$id['quantity'] = 1;
+        $productsSession->$id['photo'] = $product->image;
+        $this->redirect('produkt', $currentProduct);
     }
 
     protected function createComponentAddProductForm(){

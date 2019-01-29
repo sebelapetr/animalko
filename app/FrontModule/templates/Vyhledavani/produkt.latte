@@ -1,7 +1,7 @@
 {block title}{$product->productName|noescape}{/block}
 {ifset $product->description}{block description}{$product->description|noescape}{/block}{/ifset}
 {block content}
-<div class="col-sm-12" style="margin-top: 35px">{*PATH*}
+<div class="col-sm-12">{*PATH*}
 
     <a href="{link UvodniStrana:default}">
         <i class="fa fa-home" style="color:black"></i>
@@ -33,7 +33,7 @@
 
             <div class="view-product">
 
-                <img src="{$basePath}/img/products/{$product->image}" alt="{$product->productName|noescape}" style="object-fit: none;cursor:pointer;" data-toggle="modal" data-target="#imgModal"/>
+                <img src="{$basePath}/img/products/{$product->image}" onerror="this.src='/img/noimage.jpg'" alt="{$product->productName|noescape}" style="object-fit: none;cursor:pointer;" data-toggle="modal" data-target="#imgModal"/>
 
                 <div class="modal fade" id="imgModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -45,7 +45,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <img src="{$basePath}/img/products/{$product->image}" class="modal-img" alt="{$product->productName|noescape}" style="height: auto;"/>
+                                <img src="{$basePath}/img/products/{$product->image}" onerror="this.src='/img/noimage.jpg'" alt="{$product->productName|noescape}" class="modal-img" alt="" style="height: auto;"/>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
@@ -196,17 +196,20 @@
 <div class="col-sm-12 recommended_items">{*RECOMMENDED ITEMS*}
 
     <h2 class="text-center" style="font-weight:300;font-size:24px">Související produkty</h2>
+    <hr>
 
     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
+        {*<div class="carousel-inner">*}
+        <div class="col-sm-12">
             {var $item=1}
             {foreach $relatedProducts as $relatedProduct}
+                {*
                 <div class="item {$item==1?'active':''}">
                     <div class="col-sm-4 product">
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo text-left">
-                                    <img src="{$basePath}/img/products/{$relatedProduct->image}{*products/photo/ad*}" alt="{$relatedProduct->productName|noescape}" width="250" height="250" style="object-fit: contain;"/>
+                                    <img src="{$basePath}/img/products/{$relatedProduct->image}{*products/photo/ad" onerror="this.src='/img/noimage.jpg'"  alt="{$relatedProduct->productName|noescape}" width="250" height="250" style="object-fit: contain;"/>
                                     <hr style="margin:8px;">
                                     <p>
                                         <a href="{link VeterinarniVybaveni:produkt $relatedProduct->id}">{$relatedProduct->productName|noescape}</a>
@@ -232,6 +235,39 @@
                         </div>
                     </div>
                 </div>
+                *}
+                <div class="col-sm-3 product">
+                    <div class="product-image-wrapper">
+                        <div class="single-products">
+                            <div class="productinfo text-left">
+                                <a href="{link VeterinarniVybaveni:produkt $relatedProduct->id}"><img src="{$basePath}/img/products/{$relatedProduct->image}{*products/photo/ad*}" onerror="this.src='/img/noimage.jpg'"  alt="{$relatedProduct->productName|noescape}" width="250" height="250" style="object-fit: contain;"/></a>
+                                <hr style="margin:8px;">
+                                <p>
+                                    <a href="{link VeterinarniVybaveni:produkt $relatedProduct->id}" style="display:block;height: 60px">{$relatedProduct->productName|noescape}</a>
+                                <h2>{$relatedProduct->catalogPriceVat} Kč</h2>
+                                {if $relatedProduct->inStock}
+                                    {switch $relatedProduct->stockLevel}
+                                        {case 0}
+                                        <p style="color: rgb(255,96,0);font-size: 14px">Skladem < 3 ks Ihned k odeslání</p>
+                                    {case 3}
+                                        <p style="color:#50bf16;font-size: 14px">Skladem 3-9 ks Ihned k odeslání</p>
+                                    {case 10}
+                                        <p style="color:#50bf16;font-size: 14px">Skladem > 9 ks Ihned k odeslání</p>
+                                    {/switch}
+                                {else}
+                                    <p style="color:red;font-size: 14px">Zboží není skladem</p>
+                                {/if}
+                                <a class="popis" style="display:block;height: 90px">{$relatedProduct->description|noescape|striptags|truncate:160}</a>
+                                </p>
+                                {if !$relatedProduct->productInCart($relatedProduct->id, $session)}
+                                    <a href="{link addProductToCartFromProduct! $relatedProduct->id, $actualId}" type="submit" id="echo 'add_cart'.$nb;?>" name="add_to_cart" style="border-radius:0;margin-top:5px;width: 70%;margin-left:10px;" class="btn btn-default add-to-cart cart add-t-c" value="" onclick="getElementById('add_carthp echo $nb;?>').style.display='none';getElementById('go_carthp echo $nb;?>').style.display='block'"><i class="fa fa-shopping-cart"></i>Přidat do košíku</a>
+                                {else}
+                                    <a href="{link Kosik:dopravaAPlatba}" type="submit" id="echo 'add_cart'.$nb;?>" name="add_to_cart" style="border-radius:0;margin-top:5px;width: 70%;margin-left:10px;background:linear-gradient(to top,#13aa00,#06cd01 57%);" class="btn btn-default add-to-cart cart"><i class="fa fa-check"></i>Zboží čeká v košíku</a>
+                                {/if}
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {if $item==3}
                     {var $item=1}
                 {else}
@@ -239,12 +275,14 @@
                 {/if}
             {/foreach}
         </div>
+        {*
         <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
             <i class="fa fa-angle-left"></i>
         </a>
         <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
             <i class="fa fa-angle-right"></i>
         </a>
+        *}
     </div>
 
 </div>{*/RECOMMENDED ITEMS*}

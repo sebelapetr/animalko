@@ -156,7 +156,7 @@ class OrderService
         ];
 
         $mail = new Message();
-        $mail->setFrom('Animalko <info@animalko.cz>')
+        $mail->setFrom('Animalko.cz <info@animalko.cz>')
             ->addTo($orderEntity->email)
             ->setSubject('Vaše objednávka č. '.$order['id'].' | Animalko.cz - Veterinární a chovatelské vybavení')
             ->setHtmlBody($latte->renderToString(__DIR__.'/../../BackModule/templates/Emails/orderSent.latte', $order))

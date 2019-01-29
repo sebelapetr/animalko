@@ -70,7 +70,6 @@ class PersonalDataForm extends Control{
         $sessionPayment = $this->getPresenter()->getSession('payment');
         $sessionOrder = $this->getPresenter()->getSession('order');
         $this->orderService->newOrder($values, $sessionProducts, $sessionShipping, $sessionPayment, $sessionOrder);
-        return 'a';
         $productsSection = $this->getPresenter()->getSession()->getSection('products');
         foreach ($productsSection as $product) {
             unset($productsSection[$product['id']]);
