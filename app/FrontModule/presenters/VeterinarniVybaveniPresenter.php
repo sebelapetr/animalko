@@ -128,7 +128,7 @@ class VeterinarniVybaveniPresenter extends BasePresenter{
         $this->getProducts($this->currentCategoryId);
         /* -SETNUTÍ ID AKTUALNÍ KATEGORIE+VŠECH PODKATEGORIÍ AKTUÁLNÍ KATETGORIE PRO ZÍSKÁNÍ PRODUKTŮ Z DB (VRACÍ $this->categories)- */
 
-        $products = $this->orm->products->findBy(['category'=>$this->categories]);
+        $products = $this->orm->products->findBy(['category'=>$this->categories, 'catalogPriceVat>'=>0]);
         $this->getTemplate()->productsCount = count($products);
         $products = $products->limitBy($this->limit,$offset);
         if ($orderBy){

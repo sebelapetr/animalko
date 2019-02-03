@@ -64,14 +64,14 @@
         {foreach $recommended as $veterinaryItem}
             <div class="col-sm-12" style="border-bottom: 1px solid #0000001f;padding: 5px 0">
                 <div class="col-sm-3">
-                    <a href="{link VeterinarniVybaveni:produkt $veterinaryItem->product->id}">
-                        <img src="{$basePath}/img/products/{$veterinaryItem->product->image}" onerror="this.src='/img/noimage.jpg'" alt="{$veterinaryItem->product->productName|noescape}" height="100">
+                    <a href="{link VeterinarniVybaveni:produkt $veterinaryItem->id}">
+                        <img src="{$basePath}/img/products/{$veterinaryItem->image}" onerror="this.src='/img/noimage.jpg'" alt="{$veterinaryItem->productName|noescape}" height="100">
                     </a>
                 </div>
                 <div class="col-sm-9">
-                    <a href="{link VeterinarniVybaveni:produkt $veterinaryItem->product->id}"><h4 style="color:black;font-weight: 300;text-decoration: ">{$veterinaryItem->product->productName|noescape}</h4></a>
-                    {if $veterinaryItem->product->inStock}
-                        {switch $veterinaryItem->product->stockLevel}
+                    <a href="{link VeterinarniVybaveni:produkt $veterinaryItem->id}"><h4 style="color:black;font-weight: 300;text-decoration: ">{$veterinaryItem->productName|noescape}</h4></a>
+                    {if $veterinaryItem->inStock}
+                        {switch $veterinaryItem->stockLevel}
                             {case 0}
                             <p class="sklad" style="color: rgb(255,96,0);padding:0 !important">Skladem < 3 ks Ihned k odeslání</p>
                         {case 3}
@@ -82,7 +82,7 @@
                     {else}
                         <p class="sklad" style="color:red;padding: 0 !important">Zboží není skladem</p>
                     {/if}
-                    <a style="color:#3d4951;font-weight:600;font-size:17px">{$veterinaryItem->product->catalogPriceVat} Kč s DPH</a></div>
+                    <a style="color:#3d4951;font-weight:600;font-size:17px">{$veterinaryItem->catalogPriceVat} Kč s DPH</a></div>
             </div>
         {/foreach}
     </div>
@@ -139,14 +139,14 @@
                     <h4 style="color:black;font-weight: 300;text-decoration: unset;    margin-top: 40px;font-size: 25px;">{$i}.</h4>
                 </div>
                 <div class="col-sm-3">
-                    <a href="{link VeterinarniVybaveni:produkt $veterinaryItem->product->id}">
-                        <img src="{$basePath}/img/products/{$veterinaryItem->product->image}"  onerror="this.src='/img/noimage.jpg'" alt="{$veterinaryItem->product->productName|noescape}" height="100">
+                    <a href="{link VeterinarniVybaveni:produkt $veterinaryItem->id}">
+                        <img src="{$basePath}/img/products/{$veterinaryItem->image}"  onerror="this.src='/img/noimage.jpg'" alt="{$veterinaryItem->productName|noescape}" height="100">
                     </a>
                 </div>
                 <div class="col-sm-8">
-                    <a href="{link VeterinarniVybaveni:produkt $veterinaryItem->product->id}"><h4 style="color:black;font-weight: 300;text-decoration: unset">{$veterinaryItem->product->productName|noescape}</h4></a>
-                    {if $veterinaryItem->product->inStock}
-                        {switch $veterinaryItem->product->stockLevel}
+                    <a href="{link VeterinarniVybaveni:produkt $veterinaryItem->id}"><h4 style="color:black;font-weight: 300;text-decoration: unset">{$veterinaryItem->productName|noescape}</h4></a>
+                    {if $veterinaryItem->inStock}
+                        {switch $veterinaryItem->stockLevel}
                             {case 0}
                             <p class="sklad" style="color: rgb(255,96,0);padding:0 !important">Skladem < 3 ks Ihned k odeslání</p>
                         {case 3}
@@ -157,7 +157,7 @@
                     {else}
                         <p class="sklad" style="color:red;padding: 0 !important">Zboží není skladem</p>
                     {/if}
-                    <a style="color:#3d4951;font-weight:600;font-size:17px">{$veterinaryItem->product->catalogPriceVat} Kč s DPH</a>
+                    <a style="color:#3d4951;font-weight:600;font-size:17px">{$veterinaryItem->catalogPriceVat} Kč s DPH</a>
                 </div>
             </div>
             {var $i = $i+1}
@@ -177,14 +177,14 @@
                     <h4 style="color:black;font-weight: 300;text-decoration: unset;margin-top: 40px;font-size: 25px;">{$i}.</h4>
                 </div>
                 <div class="col-sm-3">
-                    <a href="{link ChovatelskeVybaveni:produkt $breedingItem->product->id}">
-                        <img src="{$basePath}/img/products/{$breedingItem->product->image}" onerror="this.src='/img/noimage.jpg'" alt="{$breedingItem->product->productName|noescape}" height="100">
+                    <a href="{link ChovatelskeVybaveni:produkt $breedingItem->id}">
+                        <img src="{$basePath}/img/products/{$breedingItem->image}" onerror="this.src='/img/noimage.jpg'" alt="{$breedingItem->productName|noescape}" height="100">
                     </a>
                 </div>
                 <div class="col-sm-8">
-                    <a href="{link ChovatelskeVybaveni:produkt $breedingItem->product->id}"><h4 style="color:black;font-weight: 300;text-decoration: ">{$breedingItem->product->productName|noescape}</h4></a>
-                    {if $breedingItem->product->inStock}
-                        {switch $breedingItem->product->stockLevel}
+                    <a href="{link ChovatelskeVybaveni:produkt $breedingItem->id}"><h4 style="color:black;font-weight: 300;text-decoration: ">{$breedingItem->productName|noescape}</h4></a>
+                    {if $breedingItem->inStock}
+                        {switch $breedingItem->stockLevel}
                             {case 0}
                             <p class="sklad" style="color: rgb(255,96,0);padding:0 !important">Skladem < 3 ks Ihned k odeslání</p>
                         {case 3}
@@ -195,7 +195,7 @@
                     {else}
                         <p class="sklad" style="color:red;padding: 0 !important">Zboží není skladem</p>
                     {/if}
-                    <a style="color:#3d4951;font-weight:600;font-size:17px">{$breedingItem->product->catalogPriceVat} Kč s DPH</a></div>
+                    <a style="color:#3d4951;font-weight:600;font-size:17px">{$breedingItem->catalogPriceVat} Kč s DPH</a></div>
             </div>
             {var $i=$i+1}
         {/foreach}
