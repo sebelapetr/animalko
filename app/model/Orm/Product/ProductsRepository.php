@@ -12,6 +12,7 @@ use Nextras\Orm\Repository\Repository;
  * @method ICollection|Product[] insertProduct()
  * @method ICollection|Product[] insertStock()
  * @method ICollection|Product[] findProducts()
+ * @method ICollection|Product[] updateAvailable()
  */
 
 class ProductsRepository extends Repository{

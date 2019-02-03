@@ -13,11 +13,11 @@ use Nextras\Orm\Entity\Entity;
  * @property int|NULL $vendorInternalId
  * @property string|NULL $vendorName
  * @property string|NULL $ean
- * @property int|NULL $catalogPrice
- * @property int|NULL $catalogPriceVat
- * @property int|NULL $clientPrice
- * @property int|NULL $clientPriceVat
- * @property int|NULL $retailPrice
+ * @property float|NULL $catalogPrice
+ * @property float|NULL $catalogPriceVat
+ * @property float|NULL $clientPrice
+ * @property float|NULL $clientPriceVat
+ * @property float|NULL $retailPrice
  * @property int|NULL $vat
  * @property bool|NULL $inStock
  * @property int|NULL $minStockLevel
@@ -37,6 +37,7 @@ use Nextras\Orm\Entity\Entity;
  * @property Quote|NULL $quote {1:m Quote::$product}
  * @property OrdersItem|NULL $orderItem {1:m OrdersItem::$product}
  * @property int|NULL $saled
+ * @property int|NULL $available
  */
 class Product extends Entity{
 

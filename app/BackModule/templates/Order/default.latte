@@ -21,18 +21,20 @@
             {foreach $orders as $order}
                 {switch $order->state}
                     {case 0}
-                    {var $state = 'Čeká'}
+                    {var $state = 'Čeká na zaplacení'}
                     {case 1}
-                    {var $state = 'Potvrzena'}
+                    {var $state = 'Čeká'}
                     {case 2}
-                    {var $state = 'Vybavena'}
+                    {var $state = 'Potvrzena'}
                     {case 3}
-                    {var $state = 'Odeslána'}
+                    {var $state = 'Vybavena'}
                     {case 4}
-                    {var $state = 'Doručena'}
+                    {var $state = 'Odeslána'}
                     {case 5}
-                    {var $state = 'Vrácena'}
+                    {var $state = 'Doručena'}
                     {case 6}
+                    {var $state = 'Vrácena'}
+                    {case 7}
                     {var $state = 'Reklamována'}
                 {/switch}
                 <tr>

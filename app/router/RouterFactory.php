@@ -21,15 +21,21 @@ final class RouterFactory
         $router[] = $routerBack = new RouteList("Back");
         $routerBack[] = new Route('admin/<presenter>/<action>[/<id>]', 'Login:default');
 
+        $router[] = $routerCron = new RouteList("Cron");
+        $routerCron[] = new Route('cron/<presenter>/<action>[/<id>]', 'Feeder:default');
+
         $router[] = $routerFront = new RouteList("Front");
+
         $routerFront[] = new Route('/veterinarni-vybaveni/<action>[/<id>]', [
             'presenter' => 'VeterinarniVybaveni',
             'action' => 'default'
         ]);
+
         $routerFront[] = new Route('/produkt/<action>[/<id>]', [
             'presenter' => 'Product',
             'action' => 'default'
         ]);
+
         $routerFront[] = new Route('<presenter>/<action>[/<id>]', 'UvodniStrana:default');
 
 		$router[] = new Route('<presenter>/<action>[/<id>]', 'UvodniStrana:default');

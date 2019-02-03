@@ -12,8 +12,8 @@ use Nextras\Orm\Entity\Entity;
  * @property int $id {primary}
  * @property int $type
  * @property string $name
- * @property int $price
- * @property int $priceVat
+ * @property float $price
+ * @property float $priceVat
  * @property int $quantity
  * @property int $vat
  * @property DateTimeImmutable|NULL $createdAt

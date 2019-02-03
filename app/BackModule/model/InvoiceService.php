@@ -27,7 +27,7 @@ class InvoiceService
 
     public function createInvoice(Order $order)
     {
-        $testMode = 1;
+        $testMode = 0;
         $invoice = $this->getInvoice($order);
         $invoiceItems = $this->getInvoiceItems($order);
         $supplier = $this->getSupplier();
@@ -204,7 +204,7 @@ class InvoiceService
           'f_paid' => 0,
           'f_style' => 'standard',
           'f_language' => 'CZ',
-          'f_qr' => 1,
+          'f_qr' => 0,
           'f_order' => $order->id,
           'f_note' => $order->note,
           'f_omit_stats' => 0

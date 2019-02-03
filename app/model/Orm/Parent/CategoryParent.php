@@ -9,8 +9,8 @@ namespace Eshopblank\Model;
  * @property Category $category {m:1 Category::$category}
  * @property Category|NULL $parent {m:1 Category::$parent}
  * @property int $categoryId {virtual}
- * @property int $visible
- * @property int $priority
+ * @property int|NULL $visible
+ * @property int|NULL $priority
  */
 use Nextras\Orm\Entity\Entity;
 

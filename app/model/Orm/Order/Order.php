@@ -35,6 +35,7 @@ use Nextras\Orm\Entity\Entity;
  * @property int|NULL $variableSymbol
  * @property OrdersItem[] $ordersItems {1:m OrdersItem::$order}
  * @property string|NULL $invoice
+ * @property int|NULL $typePayment
  */
 Class Order extends Entity{
 

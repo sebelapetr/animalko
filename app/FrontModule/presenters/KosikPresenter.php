@@ -58,14 +58,14 @@ Class KosikPresenter extends BasePresenter{
         $order = $this->orm->orders->getById(base64_decode($id));
         $deliveryDate = DateTime::from($order->createdAt);
         if ($deliveryDate->format("N") == 5) {
-            $days = 5;
+            $days = 6;
         } elseif ($deliveryDate->format("N") == 6) {
-            $days = 4;
+            $days = 5;
         } elseif ($deliveryDate->format("N") == 7) {
-            $days = 3;
+            $days = 4;
         }
         else {
-            $days = 3;
+            $days = 4;
         }
         $deliveryDate->modify('+'.$days.' days');
         $this->getTemplate()->setFile(__DIR__ . "/../templates/Kosik/dokoncenaObjednavka.latte");

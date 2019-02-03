@@ -1,17 +1,24 @@
+{if $order->typePayment == 2}
+    {var $state2 = 'Objednávka byla zaplacena čeká na potvrzení'}
+{else}
+    {var $state2 = 'Objednávka byla zaregistrována do systému a čeká na potvrzení'}
+{/if}
 {switch $order->state}
     {case 0}
-    {var $state = 'Objednávka byla zaregistrována do systému a čeká na potvrzení'}
+    {var $state = 'Objednávka byla zaregistrována do systému a čeká na zaplacení'}
     {case 1}
-    {var $state = 'Objednávka byla potvrzena a čeká na vybavení'}
+    {var $state = $state2}
     {case 2}
-    {var $state = 'Objednávka byla vybavena a čeká na odeslání'}
+    {var $state = 'Objednávka byla potvrzena a čeká na vybavení'}
     {case 3}
-    {var $state = 'Objednávka byla odeslána a čeká na doručení'}
+    {var $state = 'Objednávka byla vybavena a čeká na odeslání'}
     {case 4}
-    {var $state = 'Objednávka byla doručena'}
+    {var $state = 'Objednávka byla odeslána a čeká na doručení'}
     {case 5}
-    {var $state = 'Objednávka byla vrácena'}
+    {var $state = 'Objednávka byla doručena'}
     {case 6}
+    {var $state = 'Objednávka byla vrácena'}
+    {case 7}
     {var $state = 'Objednávka byla reklamována'}
 {/switch}
 {block title}Děkujeme za objednávku!{/block}

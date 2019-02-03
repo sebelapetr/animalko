@@ -1,23 +1,26 @@
 {switch $order->state}
     {case 0}
-    {var $state = 'Objednávka byla zaregistrována do systému a čeká na potvrzení'}
-    {var $button = 'Potvrdit objednávku'}
+    {var $state = 'Objednávka byla zaregistrována a čeká na zaplacení'}
+    {var $button = 'Potvrdit zaplacení objednávky'}
     {case 1}
+    {var $state = 'Objednávka byla zaplacena/na dobírku a čeká na potvrzení'}
+    {var $button = 'Potvrdit objednávku'}
+    {case 2}
     {var $state = 'Objednávka byla potvrzena a čeká na vybavení'}
     {var $button = 'Potvrdit vybavení objednávky'}
-    {case 2}
+    {case 3}
     {var $state = 'Objednávka byla vybavena a čeká na odeslání'}
     {var $button = 'Potvrdit odeslání objednávky'}
-    {case 3}
+    {case 4}
     {var $state = 'Objednávka byla odeslána a čeká na doručení'}
     {var $button = 'Potvrdit doručení objednávky'}
-    {case 4}
+    {case 5}
     {var $state = 'Objednávka byla doručena'}
     {var $button = 'Potvrdit vrácení objednávky'}
-    {case 5}
+    {case 6}
     {var $state = 'Objednávka byla vrácena'}
     {var $button = 'Potvrdit reklamaci objednávky'}
-    {case 6}
+    {case 7}
     {var $state = 'Objednávka byla reklamována'}
 {/switch}
 {block content}

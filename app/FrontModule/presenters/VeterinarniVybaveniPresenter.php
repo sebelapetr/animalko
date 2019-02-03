@@ -159,14 +159,14 @@ class VeterinarniVybaveniPresenter extends BasePresenter{
         $currentTime = new DateTime();
         $deliveryTime = DateTime::from($currentTime);
         if ($deliveryTime->format("N") == 5) {
-            $days = 5;
+            $days = 6;
         } elseif ($deliveryTime->format("N") == 6) {
-            $days = 4;
+            $days = 5;
         } elseif ($deliveryTime->format("N") == 7) {
-            $days = 3;
+            $days = 4;
         }
         else {
-            $days = 3;
+            $days = 4;
         }
         $deliveryTime->modify('+'.$days.' days');
         $this->getTemplate()->product = $product;
