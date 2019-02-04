@@ -369,7 +369,7 @@
                                 {foreach $ordersItems as $item}
                                     <tr><td></td><td>{$item->name|noescape}</td><td>{$item->priceVat} Kč</td><td>{$item->quantity} ks</td><td>{$item->priceVat*$item->quantity} Kč</td></tr>
                                 {/foreach}
-                                <tr><td></td><td  colspan="3" style="text-align: right"><b>Celkem s DPH: </b></td><td><b>{$totalPriceVat} Kč</b></td></tr>
+                                <tr><td></td><td  colspan="3" style="text-align: right"><b>Celkem s DPH: </b></td><td><b>{ceil($totalPriceVat)} Kč</b></td></tr>
                                 </tbody>
                             </table>
                             </p>

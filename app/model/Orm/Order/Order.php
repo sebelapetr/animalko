@@ -28,8 +28,8 @@ use Nextras\Orm\Entity\Entity;
  * @property string|NULL $deliveryCity
  * @property string|NULL $deliveryPsc
  * @property int|NULL $newsletter
- * @property int $totalPrice
- * @property int $totalPriceVat
+ * @property float $totalPrice
+ * @property float $totalPriceVat
  * @property DateTimeImmutable|null $createdAt
  * @property int $state {default 0}
  * @property int|NULL $variableSymbol

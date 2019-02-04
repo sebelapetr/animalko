@@ -42,7 +42,7 @@
                     <td>{$order->name} {$order->surname}</td>
                     <td>{$order->email}</td>
                     <td>{$order->street}, {$order->city}</td>
-                    <td>{$order->totalPriceVat} Kč</td>
+                    <td>{ceil($order->totalPriceVat)} Kč</td>
                     <td>{$order->createdAt|date:'%d.%m.%Y %H:%M:%S'}</td>
                     <td style="color: {$order->state==0?red:green}">
                         {$state}
