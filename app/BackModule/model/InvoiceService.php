@@ -27,7 +27,7 @@ class InvoiceService
 
     public function createInvoice(Order $order)
     {
-        $testMode = 1;
+        $testMode = 0;
         $invoice = $this->getInvoice($order);
         $invoiceItems = $this->getInvoiceItems($order);
         $supplier = $this->getSupplier();

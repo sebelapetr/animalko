@@ -46,16 +46,29 @@
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         } )(window,document,'script','dataLayer','GTM-K5D4G2F');</script>
         <!-- End Google Tag Manager -->
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110969892-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){ dataLayer.push( arguments ); }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-110969892-1');
+        </script>
+
         {*
+        !!!!!!!!!!
         <script type="text/javascript">
             window.smartlook||(function(d) {
                 var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
                 var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
                 c.charset='utf-8';c.src='https://rec.smartlook.com/recorder.js';h.appendChild(c);
             })(document);
-            smartlook('init', '541cda3b81ca09c40187f7f56de53bbb8d9d8975');
+            smartlook('init', '533b1e11e6e5084e520b801a57d27ed52b10dbfc');
         </script>
         *}
+
         <!-- Begin Inspectlet Asynchronous Code -->
         <script type="text/javascript">
             (function() {
@@ -70,7 +83,6 @@
     </head>
 
     <body>
-
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5D4G2F"
                       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -102,7 +114,7 @@
                     <div class="col-sm-12">
                         {foreach $flashes as $flash}
                             <div class="alert alert-success" role="alert">
-                                {$flash->message}
+                                {_$flash->message}
                             </div>
                         {/foreach}
                         {include #content}

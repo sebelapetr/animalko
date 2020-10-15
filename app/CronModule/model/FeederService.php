@@ -52,7 +52,7 @@ class FeederService{
         $api->setBasicAuthentication('16203/SEBELA', 'vichr');
         $api->setOpt(CURLOPT_FILE, $fp);
         $api->setOpt(CURLOPT_FOLLOWLOCATION, true);
-        $api->get('https://www.hs-online.cz:8081/restapi/b2b/zbozi/stav?id=48746');
+        $api->get('https://www.hs-online.cz:8081/restapi/b2b/zbozi/stav');
         $api->close();
         if ($api->error) {
             echo 'ERROR - ';
@@ -88,7 +88,19 @@ class FeederService{
             $product = $this->orm->products->getBy(['id'=>$item->productId]);
             if($product) {
                 try {
-                    $product->minStockLevel = intval($item->minStockLevel);
+                    if (intval($item->minStockLevel)>1){
+                        $product->minStockLevel = intval($item->minStockLevel);
+                        $product->inStock = true;
+                        if (intval($item->minStockLevel) < 3) {
+                            $product->stockLevel = 0;
+                        } elseif (intval($item->minStockLevel) < 10) {
+                            $product->stockLevel = 3;
+                        } else {
+                            $product->stockLevel = 10;
+                        }
+                    } else {
+                        $product->inStock = false;
+                    }
                     $this->orm->persist($product);
                 } catch (\Exception $e) {
                     Debugger::barDump($e);

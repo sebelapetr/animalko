@@ -138,8 +138,8 @@ a#scrollUp i{
 .header-middle .container .row {
   margin-left: 0;
   margin-right: 0;
-  padding-bottom: 30px;
-  padding-top: 30px;
+  padding-bottom: 15px;
+  padding-top: 15px;
 }
 .mainmenu li a:hover{
     text-decoration: underline;
@@ -2960,7 +2960,7 @@ color:black !important;
   width:284px ;
 }
 .doprava{
-  margin-top:50px;
+  margin-top:0px;
 }
 .doprava caption{ 
   font-size:19px !important;
@@ -3041,6 +3041,11 @@ color:black !important;
   border:1px solid #0003;
 }
 #mapaFooter{
+  margin-top:20px;
+  height:250px;
+  border:1px solid #0003;
+}
+#mapaFooter2{
   margin-top:20px;
   height:250px;
   border:1px solid #0003;

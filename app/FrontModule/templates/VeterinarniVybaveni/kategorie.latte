@@ -15,7 +15,7 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-3 x700">
                 <div class="col-sm-12" style="padding:0;margin-bottom:15px;border:1px solid #0003">
                     <div class="col-sm-12" style="background:#f1f1f15e;border-bottom: 0.5px solid rgba(0,0,0,0.25)">
                         <h3 style="color:black;text-decoration:;font-weight:400;font-size:16px;margin:17px 0;">Kategorie</i></h3>
@@ -72,7 +72,7 @@
 
                 <div class="col-sm-12" style="padding-right:0px;padding-left:0px;">
 
-                    <div class="features_items"><!--features_items-->
+                    <div class="features_items x700"><!--features_items-->
 
                             <div class="col-sm-12"  style="padding-right:0px;padding-left:0px;">
                                 <h3 style="font-weight:300;margin-bottom:10px">{$category->categorySingleName}</h3>
@@ -94,7 +94,47 @@
 
                     </div>
 
-                    <div class="col-sm-12" style="border: 1px solid #0003;margin:20px 0 ;padding:0;">
+                    <div class="col-sm-3 x290 x490" style="padding: 0;margin-top: 15px">
+                        {if count($categories)>0}
+                        <div class="alternate-slider panel-group category-products" id="accordian"><!--category-productsr-->
+                            <div class="panel panel-default" style="background:#f1f1f15e">
+                                <a data-toggle="collapse" data-target=".navbar-collapse-subcategory">
+                                <div class="col-sm-12" style="border-bottom: 0.5px solid rgba(0,0,0,0.25)">
+                                    <h3 style="color:black;text-decoration:;font-weight:400;font-size:16px;margin:17px 0;">Podkategorie<i class="fa fa-angle-down pull-right"></i></h3>
+                                </div>
+                                </a>
+                                <div class="navbar-collapse-subcategory" style="height:0;overflow:hidden;z-index:1000;">
+                                        {foreach $categories as $categoryParent}
+                                            <div class="col-sm-12 toggler" style="cursor: pointer;padding:5px;background:00000000;border-bottom:0.5px solid rgba(0,0,0,0.125)" onclick="myFunction({$categoryParent->category->id})" >
+                                                <h3 style="color:black;font-weight:300;font-size:14px;margin:13px 10px 13px 10px;">
+                                                    <i class="far fa-circle fa-xs pull-left" style="margin-right: 5px"></i>
+                                                    <a href="{link VeterinarniVybaveni:kategorie $categoryParent->category->id}" class="category-item"  style="cursor: pointer;color:black">{$categoryParent->category->categorySingleName}</a>
+                                                    <i class="fas fa-angle-down fa-xs pull-right category-more"></i>
+                                                </h3>
+                                                <div class="toggleX">
+                                                    <ul style="padding: 5px 20px;" id="subcategories{$categoryParent->category->id}">
+                                                        {foreach $categoryParent->category->parent as $subcategory}
+                                                            {if $subcategory->visible == 1}
+                                                                <li style="margin-top:10px;">
+                                                                    <i class="fas fa-angle-right fa-xs"></i> <a href="{link VeterinarniVybaveni:kategorie $subcategory->category->id}" class="category-item">{$subcategory->category->categorySingleName}</a>
+                                                                </li>
+                                                            {/if}
+                                                        {/foreach}
+                                                        <li style="margin-top:10px;">
+                                                            <i class="fas fa-angle-right fa-xs"></i> <a href="{link VeterinarniVybaveni:kategorie $categoryParent->category->id}" class="category-item"><b>Zobrazit vše</b></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        {/foreach}
+                                </div>
+                            </div>
+                        </div><!--/category-products-->
+                            {dump $categories}
+                        {/if}
+                    </div>
+
+                    <div class="col-sm-12 x700" style="border: 1px solid #0003;margin:20px 0 ;padding:0;">
                         <ul class="nav nav-tabs filtr">
                             <li style="{ifset $orderBy}{else}background:#f1f1f15e;border-right:0.5px solid #0003{/ifset}"><a href="{link VeterinarniVybaveni:kategorie $actualId, 1}" style="color:black;text-decoration:none;font-weight:300;'.$selected1.'">Doporučené</a></li>
                             <li style="{ifset $orderBy}{if $orderBy=='catalogPriceVat' && $direction == 'ASC'}background:#f1f1f15e;border-left:0.5px solid #0003;border-right:0.5px solid #0003{/if}{/ifset}"><a href="{link VeterinarniVybaveni:kategorie $actualId, 1, 'catalogPriceVat', 'ASC'}" style="color:black;text-decoration:none;font-weight:300;'.$selected2.'">Nejlevnější</a></li>
@@ -141,12 +181,13 @@
                                     {else}
                                         <p class="sklad" style="color:red">Zboží není skladem</p>
                                     {/if}
-                                    <a class="popis" style="display:block;height: 90px;">{$product->description|noescape|striptags|truncate:160}</a>
+                                    <a class="popis x700" style="display:block;height: 90px;">{$product->description|noescape|striptags|truncate:160}</a>
+                                    <a class="popis x490 x290" style="display:block;">{$product->description|noescape|striptags|truncate:160}</a>
                                     </p>
                                     {if !$product->productInCart($product->id, $session)}
-                                        <a href="{plink addProductToCart! $product->id, $actualId}" type="submit" id="echo 'add_cart'.$nb;?>" name="add_to_cart" style="border-radius:0;margin-top:5px;width: 70%;margin-left:10px;" class="btn btn-default add-to-cart cart add-t-c" value="" onclick="getElementById('add_carthp echo $nb;?>').style.display='none';getElementById('go_carthp echo $nb;?>').style.display='block'"><i class="fa fa-shopping-cart"></i>Přidat do košíku</a>
+                                        <a href="{plink addProductToCart! $product->id, $actualId}" name="add_to_cart"><button class="btn btn-default add-to-cart cart add-t-c" style="border-radius:0;margin-top:5px;width: 70%;margin-left:10px;"><i class="fa fa-shopping-cart"></i>Přidat do košíku</button></a>
                                     {else}
-                                        <a href="{plink addProductToCart! $product->id, $actualId}" type="submit" id="echo 'add_cart'.$nb;?>" name="add_to_cart" style="border-radius:0;margin-top:5px;width: 70%;margin-left:10px;background:linear-gradient(to top,#13aa00,#06cd01 57%);" class="btn btn-default add-to-cart cart"><i class="fa fa-check"></i>Zboží čeká v košíku</a>
+                                        <a href="{plink addProductToCart! $product->id, $actualId}" type="submit" name="add_to_cart"><button style="border-radius:0;margin-top:5px;width: 70%;margin-left:10px;background:linear-gradient(to top,#13aa00,#06cd01 57%);" class="btn btn-default add-to-cart cart"><i class="fa fa-check"></i>Zboží čeká v košíku</button></a>
                                     {/if}
                                 </div>
                             </div>
